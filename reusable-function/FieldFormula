@@ -1,5 +1,18 @@
+/* Create Derived Record */
+NEW_DERIVED_RECORD
+
+/* Create Field inside Derived Record */
+NEW_FIELD
+
+/* PeopleCode inside FieldFormula in NEW_DERIVED_RECORD.NEW_FIELD */
 Function functionName() Returns string;
   Local string &value;
   SQLExec("SELECT VALUE FROM TABLE", &value);
   Return &value;
 End-Function;
+
+/* Call Derived Record FieldFormula (in some other file) */
+Declare Function functionName PeopleCode NEW_DERIVED_RECORD.NEW_FIELD FieldFormula;
+
+/* Store Function value in a variable */
+Local string &value = functionName();
