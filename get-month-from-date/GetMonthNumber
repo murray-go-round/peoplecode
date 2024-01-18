@@ -1,0 +1,63 @@
+/Create the Function */
+Function GetMonthNumber(&InputMonth As string) Returns integer
+  Evaluate Upper(&InputMonth)
+  When "JAN"
+    &Result = 1;
+    Break;
+  When "FEB"
+    &Result = 2;
+    Break;
+  When "MAR"
+    &Result = 3;
+    Break;
+  When "APR"
+    &Result = 4;
+    Break;
+  When "MAY"
+    &Result = 5;
+    Break;
+  When "JUN"
+    &Result = 6;
+    Break;
+  When "JUL"
+    &Result = 7;
+    Break;
+  When "AUG"
+    &Result = 8;
+    Break;
+  When "SEP"
+    &Result = 9;
+    Break;
+  When "OCT"
+    &Result = 10;
+    Break;
+  When "NOV"
+    &Result = 11;
+    Break;
+  When "DEC"
+    &Result = 12;
+    Break;
+  When-Other
+    Break;
+  End-Evaluate;
+  Return &Result;
+End-Function;
+
+/*** How to use the Function ***/
+
+/* Take a custom unformatted date */
+Local string &Date = "JAN 18 2024";
+
+/* Convert to Array */
+Local array of string &DateArray = Split(&Date, " ");
+
+/* Get separate Month, Day, Year */
+Local string &MonthAsString = &DateArray[1];
+Local string &DayAsString = &DateArray[1];
+Local string &YearAsString = &DateArray[1];
+
+/* Use GetMonthNumber Function to get the integer value for Month */
+Local integer &MonthAsInteger = GetMonthNumber(&MonthAsString);
+
+/* Convert to PeopleCode readable date */
+Local &NewDate = Date3(&YearAsString, &MonthAsInteger, &DayAsString);
