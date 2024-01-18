@@ -1,0 +1,5 @@
+Function functionName() Returns string;
+  Local string &value;
+  SQLExec("SELECT VALUE FROM TABLE", &value);
+  Return &value;
+End-Function;
